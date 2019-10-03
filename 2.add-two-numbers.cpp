@@ -62,6 +62,7 @@ public:
         int singleDigitRes = 0;
         while (head1 != NULL && head2 != NULL)
         {
+            // if overflow, take the single digit and put the carry
             if (head1->val + head2->val + carry >= 10)
             {
                 singleDigitRes = (head1->val + head2->val + carry) % 10;
@@ -77,7 +78,7 @@ public:
             head1 = head1->next;
             head2 = head2->next;
         }
-
+        // in case two linked lists have different size
         while (head1 != NULL)
         {
             if (head1->val + carry >= 10)
@@ -116,6 +117,7 @@ public:
             res.push_back(1);
         }
         
+        // convert the vector to a linked list
         ListNode *preNode = new ListNode(res[0]);
         preNode->next = NULL;
         ListNode *output = preNode;
