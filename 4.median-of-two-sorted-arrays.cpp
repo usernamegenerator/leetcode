@@ -44,137 +44,53 @@
 #include <iostream>
 using namespace std;
 // @lc code=start
+// https://www.youtube.com/watch?v=LPFhl65R7ww&t=1013s
 class Solution
 {
 public:
-// 1st trial: 
-// use merge sort like algorithm, keep "merge" two arrays together until find the targetIndex
-// failed...
-/*
+    // merge two sorted array into one
+    // median = (arr[size/2] + arr[size/2-1]) / 2 // even number
+    // median = arr[size/2];
+    /*
     double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
     {
-        int totalSize = nums1.size() + nums2.size();
-        int targetIndex = 0;
-        
-        bool isNeedTwoIndex = false;
-        if (totalSize % 2 == 0)
-        {
-            isNeedTwoIndex = true;
-            targetIndex = totalSize / 2 - 1;
-            // median is ([index] + [index + 1]) / 2
-        }
-        else
-        {
-            isNeedTwoIndex = false;
-            targetIndex = totalSize / 2;
-            // median is ([index]) / 2
-        }
-
+        vector<int> merge;
         int i = 0;
         int j = 0;
-        int index = 0;
-        float median = 0;
-
-        cout << targetIndex << " " << isNeedTwoIndex << endl;
         while (i < nums1.size() && j < nums2.size())
         {
             if (nums1[i] < nums2[j])
             {
+                merge.push_back(nums1[i]);
                 i++;
-                index++;
-                if (index == targetIndex)
-                {
-                    if (!isNeedTwoIndex)
-                    {
-                        median = nums1[i];
-                        break;
-                    }
-                    else
-                    {
-                        if (i + 1 < nums1.size())
-                        {
-                            int mini = min(nums2[j], nums1[i + 1]);
-                            median = (nums1[i] + mini) / 2.0;
-                            break;
-                        }
-                        else
-                        {
-                            median = (nums1[i] + nums2[j]) / 2.0;
-                            break;
-                        }
-                    }
-                }
             }
             else
             {
+                merge.push_back(nums2[j]);
                 j++;
-                index++;
-                if (index == targetIndex)
-                {
-                    if (!isNeedTwoIndex)
-                    {
-                        median = nums2[j];
-                        break;
-                    }
-                    else
-                    {
-                        if (j + 1 < nums2.size())
-                        {
-                            int mini = min(nums1[i], nums2[j + 1]);
-                            median = (nums2[j] + mini) / 2.0;
-                            break;
-                        }
-                        else
-                        {
-                            median = (nums2[j] + nums1[i]) / 2.0;
-                            break;
-                        }
-                    }
-                }
             }
         }
-        if (index < targetIndex)
+
+        while (i < nums1.size())
         {
-            while (i < nums1.size())
-            {
-                i++;
-                index++;
-                if (index == targetIndex)
-                {
-                    if (!isNeedTwoIndex)
-                    {
-                        median = nums1[i];
-                        break;
-                    }
-                    else
-                    {
-                        median = (nums1[i] + nums1[i + 1]) / 2.0;
-                        break;
-                    }
-                }
-            }
-
-            while (j < nums2.size())
-            {
-                j++;
-                index++;
-                if (index == targetIndex)
-                {
-                    if (!isNeedTwoIndex)
-                    {
-                        median = nums2[j];
-                        break;
-                    }
-                    else
-                    {
-                        median = (nums2[j] + nums2[j + 1]) / 2.0;
-                        break;
-                    }
-                }
-            }
+            merge.push_back(nums1[i]);
+            i++;
+        }
+        while (j < nums2.size())
+        {
+            merge.push_back(nums2[j]);
+            j++;
         }
 
-        return median;
+        int size = merge.size();
+        if (size % 2 == 0)
+        {
+            return (merge[size / 2] + merge[size / 2 - 1]) / 2.0;
+        }
+        else
+        {
+            return (merge[size / 2]) / 1.0;
+        }
     }
     */
 };
