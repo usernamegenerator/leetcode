@@ -167,7 +167,7 @@ Time Limit Exceeded
             for (int j = 0; j <= i; j++)
             {
                 // i - j <= 2 is to prevent the overflow of [i-1] [j+1]
-                isPalindrome[i][j] = s[i] == s[j] && (i - j <= 2 || isPalindrome[i - 1][j + 1]) ;
+                isPalindrome[i][j] = s[i] == s[j] && (i - j <= 2 || isPalindrome[i - 1][j + 1]);
                 if (isPalindrome[i][j])
                 {
                     if (i - j + 1 > res.size())
