@@ -52,6 +52,41 @@ struct ListNode
 class Solution
 {
 public:
+    // a more concise and straightforward solution
+    // iterate through the two lists, add l1 to sum, add l2 to sum
+    // take sum%10 as current digit, and set sum to sum/10 as the carry for next digit
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
+    {
+        ListNode *res = new ListNode(0);
+        ListNode *cur = res;
+        ListNode *p1 = l1;
+        ListNode *p2 = l2;
+        int digit = 0;
+        while (p1 != NULL || p2 != NULL)
+        {
+            if (p1 != NULL)
+            {
+                digit += p1->val;
+                p1 = p1->next;
+            }
+            if (p2 != NULL)
+            {
+                digit += p2->val;
+                p2 = p2->next;
+            }
+            cur->next = new ListNode(digit % 10);
+            cur = cur->next;
+            digit = digit / 10;
+        }
+        if (digit == 1)
+        {
+            cur->next = new ListNode(1);
+        }
+
+        return res->next;
+    }
+
+    /* 
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
     {
         vector<int> res;
@@ -130,6 +165,6 @@ public:
         }
 
         return output;
-    }
+    } */
 };
 // @lc code=end

@@ -49,6 +49,7 @@ class Solution
 {
 public:
     // https://www.youtube.com/watch?v=LPFhl65R7ww&t=1013s
+    // https://blog.csdn.net/chen_xinjia/article/details/69258706
     double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
     {
         // find which array is smaller
