@@ -43,6 +43,9 @@ void rotate(int *nums, int numsSize, int k)
 {
     if (numsSize == 0 || numsSize == 1)
         return;
+    if (k == 0)
+        return;
+
     int iteration = 0;
     int start = 0;
     int replaced = nums[start];
@@ -54,25 +57,45 @@ void rotate(int *nums, int numsSize, int k)
         {
             destinationIndex = destinationIndex % numsSize;
         }
-        cout << "destinationIndex " << destinationIndex << " ";
+        // cout << "destinationIndex " << destinationIndex << " ";
         //1. 把要替换的值暂存
         int newReplaced = nums[destinationIndex];
-        cout << "temp save " << newReplaced << " ";
+        // cout << "temp save " << newReplaced << " ";
         //2. 替换
         nums[destinationIndex] = replaced;
-        cout << "new value " << nums[destinationIndex] << " ";
+        // 如果回到最初开始的地方
+        // 比如
+        // 1, 2, 3, 4, 5, 6 . k = 2
+        // 1, 2, 1, 4, 5, 6 | 3
+        // 1, 2, 1, 4, 3, 6 | 5
+        // 5, 2, 1, 4 ,3, 6
+        // 从下一个index开始
+        // 暂存的值要变成下一个index，新开始的index，的值
+        if (destinationIndex == start)
+        {
+            destinationIndex++;
+            //如果越界，需要修正
+            if (destinationIndex > numsSize - 1)
+            {
+                destinationIndex = destinationIndex % numsSize;
+            }
+            start++;
+            newReplaced = nums[destinationIndex];
+        }
+
+        // cout << "new value " << nums[destinationIndex] << " ";
         //3. 保存被替换的值
         replaced = newReplaced;
         //4. 计算新的替换位置
         destinationIndex = destinationIndex + k;
-        cout << "new dest " << destinationIndex << endl;
+        // cout << "new dest " << destinationIndex << endl;
 
-        for (int i = 0; i < numsSize; i++)
+        /* for (int i = 0; i < numsSize; i++)
         {
             printf("%d ", nums[i]);
         }
         cout << endl;
-
+ */
         iteration++;
     }
 }
