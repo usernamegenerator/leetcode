@@ -64,13 +64,13 @@ public:
     bool isValidSudoku(vector<vector<char>> &board)
     {
 
+        //遍历行
         for (int i = 0; i < 9; i++)
         {
             bool isPresent[10] = {false};
 
             for (int j = 0; j < 9; j++)
             {
-
                 if ((board[i][j] - '0') < 0 || (board[i][j] - '0') > 9)
                     continue;
 
@@ -84,7 +84,7 @@ public:
                 }
             }
         }
-
+        //遍历列
         for (int j = 0; j < 9; j++)
         {
             bool isPresent[10] = {false};
@@ -103,6 +103,12 @@ public:
             }
         }
 
+        //遍历3*3
+        /*
+        0 1 2
+        3 4 5
+        6 7 8
+        */
         int k = 0;
         while (k < 9)
         {
