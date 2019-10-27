@@ -22,6 +22,7 @@
 */
 #include <vector>
 #include <iostream>
+#include <cmath>
 using namespace std;
 class Solution
 {
@@ -29,19 +30,43 @@ public:
     int reverse(int x)
     {
         vector<int> v;
+        int save = x;
+        
         while (x)
         {
             v.push_back(x % 10);
             x = x / 10;
         }
+        /*
         for (auto i : v)
             cout << i;
         cout << endl;
+        */
+
+        double sum = 0;
+        int p = 0;
+        for (int i = v.size() - 1; i >= 0; i--)
+        {
+            /*
+            cout << "pow has precise problems, results save to int is incorrect" << endl;
+            cout << pow(10, p) << endl;
+            int hello = pow(10, p);
+            cout << hello << endl;
+            */
+            double tempSum = v[i] * pow(10, p);
+            sum = sum + tempSum;
+            p++;
+        }
+
+        if (sum > pow(2, 31) - 1 || sum < 0 - pow(2, 31))
+            return 0;
+            
+        return (int)sum;
     }
 };
 
 int main()
 {
     Solution s;
-    s.reverse(123);
+    cout << s.reverse(-123) << endl;
 }
