@@ -29,7 +29,7 @@ class Solution
 public:
     string longestCommonPrefix(vector<string> &strs)
     {
-        if(strs.empty)
+        if(strs.empty())
             return "";
         string first = strs[0];
         string res = "";
