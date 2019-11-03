@@ -17,7 +17,10 @@
    15   7
 返回它的最大深度 3 。
 */
-
+#include <iostream>
+#include <queue>
+#include <algorithm>
+using namespace std;
 //  Definition for a binary tree node.
 struct TreeNode
 {
@@ -27,10 +30,7 @@ struct TreeNode
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-#include <iostream>
-#include <queue>
-#include <algorithm>
-using namespace std;
+
 class Solution
 {
 public:
