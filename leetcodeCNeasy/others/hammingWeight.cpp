@@ -41,7 +41,7 @@ public:
         uint32_t cnt = 0;
         while (n)
         {
-            n = n & (n - 1);
+            n = n & (n - 1); // clear the rightmost 1;
             cnt++;
         }
         return cnt;
