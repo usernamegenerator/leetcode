@@ -125,6 +125,85 @@ public:
     // at last, set two marker vectors as zeros
     void setZeroes(vector<vector<int>> &matrix)
     {
+        int numOfRows = matrix.size();
+        int numOfCols = matrix[0].size();
+        int markerRow = -1;
+        int markerCol = -1;
+        bool foundMarker = false;
 
+        // select the marker row and col
+        for (int row = 0; row < numOfRows; row++)
+        {
+            if (foundMarker)
+            {
+                break;
+            }
+            for (int col = 0; col < numOfCols; col++)
+            {
+                if (matrix[row][col] == 0)
+                {
+                    markerRow = row;
+                    markerCol = col;
+                    foundMarker = true;
+                    break;
+                }
+            }
+        }
+
+        // if there is no marker, return
+        if (!foundMarker)
+            return;
+
+        // iterate through all the elements, and set the marker row and col
+        for (int row = 0; row < numOfRows; row++)
+        {
+            for (int col = 0; col < numOfCols; col++)
+            {
+                if (matrix[row][col] == 0)
+                {
+                    matrix[row][markerCol] = 0;
+                    matrix[markerRow][col] = 0;
+                }
+            }
+        }
+
+        for (int row = 0; row < numOfRows; row++)
+        {
+            if (row == markerRow)
+                continue;
+            if (matrix[row][markerCol] == 0)
+            {
+                for (int col = 0; col < numOfCols; col++)
+                {
+                    if (col == markerCol)
+                        continue;
+                    matrix[row][col] = 0;
+                }
+            }
+        }
+
+        for (int col = 0; col < numOfCols; col++)
+        {
+            if (col == markerCol)
+                continue;
+            if (matrix[markerRow][col] == 0)
+            {
+                for (int row = 0; row < numOfRows; row++)
+                {
+                    if (row == markerRow)
+                        continue;
+                    matrix[row][col] = 0;
+                }
+            }
+        }
+
+        for (int row = 0; row < numOfRows; row++)
+        {
+            matrix[row][markerCol] = 0;
+        }
+        for (int col = 0; col < numOfCols; col++)
+        {
+            matrix[markerRow][col] = 0;
+        }
     }
 };
