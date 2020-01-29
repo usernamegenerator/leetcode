@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -24,6 +25,7 @@ class Solution
 public:
     // method 1:
     // iterate through the array, use the index to expand
+    /*
     string longestPalindrome(string s)
     {
         string res;
@@ -58,4 +60,12 @@ public:
         right--;
         return s.substr(left, right - left + 1);
     }
+    */
+
+    // method 2
+    // dynamic programming
+    // if s[i,j] is palindrome
+    // then s[i+1,j-1] is palindrome if s[i+1] == s[j-1]
+    // use 2D array s[i][j] to indicate if s[i,j] is palindrome
+    
 };
