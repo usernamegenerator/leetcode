@@ -69,9 +69,9 @@ public:
     // use 2D array v[i][j] to indicate if s[i,j] is palindrome
     // iterate i from 0 to size
     // iterate j from 0 to i
-    // j-i>2 to make sure v[i-1][j+1] works
+    // j-i>2 to make sure v[j + 1][i - 1]) works
     // s[i]==s[j] and j-i<=2 is palindrome
-    // v[i][j] = (s[i]==s[j]) && (j-i<=2 || v[i-1][j+1])
+    // v[j][i] = (s[i]==s[j]) && ((i - j <= 2) || v[j + 1][i - 1])
 
     string longestPalindrome(string s)
     {
