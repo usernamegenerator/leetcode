@@ -64,8 +64,35 @@ public:
 
     // method 2
     // dynamic programming
-    // if s[i,j] is palindrome
-    // then s[i+1,j-1] is palindrome if s[i+1] == s[j-1]
-    // use 2D array s[i][j] to indicate if s[i,j] is palindrome
-    
+    // if v[i,j] is palindrome
+    // then v[i+1,j-1] is palindrome if s[i+1] == s[j-1]
+    // use 2D array v[i][j] to indicate if s[i,j] is palindrome
+    // iterate i from 0 to size
+    // iterate j from 0 to i
+    // j-i>2 to make sure v[i-1][j+1] works
+    // s[i]==s[j] and j-i<=2 is palindrome
+    // v[i][j] = (s[i]==s[j]) && (j-i<=2 || v[i-1][j+1])
+
+    string longestPalindrome(string s)
+    {
+        vector<vector<bool>> v(s.size(), vector<bool>(s.size(), false));
+        int maxLen = 0;
+        string res;
+        for (int i = 0; i < s.size(); i++)
+        {
+            for (int j = 0; j <= i; j++)
+            {
+                v[j][i] = (s[i] == s[j]) && ((i - j <= 2) || v[j + 1][i - 1]);
+                if (v[j][i])
+                {
+                    if(i - j + 1 > maxLen)
+                    {
+                        maxLen = i - j + 1;
+                        res = s.substr(j, i - j + 1);
+                    }
+                }
+            }
+        }
+        return res;
+    }
 };
