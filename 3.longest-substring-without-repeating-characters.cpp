@@ -10,6 +10,7 @@
 using namespace std;
 
 // @lc code=start
+
 class Solution
 {
 public:
@@ -65,6 +66,7 @@ public:
               i        j        j out of bound, exit
                                 return 3;
     */
+    
     int lengthOfLongestSubstring(string s)
     {
         int i = 0;
@@ -94,5 +96,45 @@ public:
         }
         return max;
     }
+
+   // exceed time limit
+   /*
+    int lengthOfLongestSubstring(string s)
+    {
+        if (s.empty())
+        {
+            return 0;
+        }
+        int max = -1;
+        for (int i = 0; i < s.size(); i++)
+        {
+            // set to store if the letter is in the current string or not
+            set<char> st;
+            int count = 0;
+            st.insert(s[i]);
+            count++;
+            for (int j = i + 1; j < s.size(); j++)
+            {
+                // if the letter is in current string, end
+                if (st.find(s[j]) != st.end())
+                {
+                    break;
+                }
+                else
+                {
+                    st.insert(s[j]);
+                    count++;
+                }
+            }
+            if (count > max)
+            {
+                max = count;
+            }
+        }
+
+        return max;
+    }
+    */
 };
+
 // @lc code=end
