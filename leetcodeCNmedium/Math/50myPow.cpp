@@ -42,11 +42,12 @@ private:
 public:
     double myPow(double x, int n)
     {
-        if (n < 0)
+        long long N = n;
+        if (N < 0)
         {
             x = 1 / x;
-            n = -n;
+            N = -N;
         }
-        return fastPow(x, n);
+        return fastPow(x, N);
     }
 };
