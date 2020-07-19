@@ -47,17 +47,13 @@ class Solution
 public:
     bool hasCycle(ListNode *head)
     {
-        if (head == nullptr || head->next==nullptr)
+        if (head == nullptr)
             return false;
         
-        ListNode *fast = head->next;
+        ListNode *fast = head;
         ListNode *slow = head;
         while (fast)
         {
-            if (fast!=nullptr && fast == slow)
-            {
-                return true;
-            }
             fast = fast->next;
             if (fast)
             {
@@ -68,6 +64,10 @@ public:
                 return false;
             }
             slow = slow->next;
+            if (fast!=nullptr && fast == slow)
+            {
+                return true;
+            }
         }
         return false;
     }
