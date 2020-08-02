@@ -67,6 +67,8 @@ public:
         {
             return head;
         }
+        // make the deep copyed linked list with all ->next established
+        // save the mapping between copy and origin
         unordered_map<Node *, Node *> um;
         Node *cur = head;
         Node *newHead = new Node(head->val);
@@ -80,6 +82,7 @@ public:
             newCur = newCur->next;
             um.insert(make_pair(cur, newCur));
         }
+        // iterate the two linkedList and build the ->random
         cur = head;
         newCur = newHead;
         while (cur)
